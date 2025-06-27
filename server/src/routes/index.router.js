@@ -1,10 +1,10 @@
 const indexRouter = require('express').Router()
 
-const authRouter = require('./userRouter')
+const userRouter = require('./userRouter')
 const oceanRouter = require('./ocean.router')
 
 
-indexRouter.use('/user', authRouter)
+indexRouter.use('/user', userRouter)
 indexRouter.use('/ocean', oceanRouter)
 
 // indexRouter.use((req, res) => {
