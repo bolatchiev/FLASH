@@ -4,7 +4,8 @@ import { useEffect } from "react";
 import { GeographyApi } from "../../entities/GeographyApi";
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import Stack from 'react-bootstrap/Stack';
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
+import './GamePage.css'
 
 
 export default function GamePage() {
@@ -13,7 +14,7 @@ export default function GamePage() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [status, setStatus] = useState(45);
     const [error, setError] = useState(null);
-    
+    const navigate = useNavigate()
     useEffect(() => {
         async function loadQuestions() {
         try {
@@ -49,6 +50,7 @@ export default function GamePage() {
                 setStatus(45);
             }else{
                 alert('Игра окончена!')
+                navigate('/')
             }
         }else{
             alert('Неправильный ответ')
@@ -60,7 +62,7 @@ export default function GamePage() {
     
     const currentQuestion = questions[currentIndex];
     const answers = currentQuestion?.answer ? JSON.parse(currentQuestion.answer) : [];
-    
+
     return (
         <div className="game-container">
         <ProgressBar animated now={status} max={45} />
