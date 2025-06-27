@@ -4,8 +4,6 @@ import Layout from './app/Layout'
 import MainPage from './pages/MainPage/MainPage'
 
 function App() {
-
-
   return (
     <Routes>
       <Route path='/' element={<Layout/>}> 
