@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
           type: DataTypes.TEXT,
           allowNull: true,
         },
-        rightAnswer: {
+        rightAns: {
           type: DataTypes.STRING,
           allowNull: false,
         },

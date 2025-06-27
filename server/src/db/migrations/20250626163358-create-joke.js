@@ -17,7 +17,7 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: false,
       },
-      rightAnswer: {
+      rightAns: {
         type: Sequelize.STRING,
         allowNull: false,
       },

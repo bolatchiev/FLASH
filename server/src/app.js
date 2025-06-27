@@ -4,7 +4,7 @@ const indexRouter = require('./routes/index.router');
 const serverConfig = require('./configs/server.config');
 const { PORT } = process.env;
 const app = express();
-const jokesRouter = require('./routes/jokes');
+const jokesRouter = require('./routes/jokes.router');
 app.use('/api/jokes', jokesRouter);
 
 serverConfig(app);

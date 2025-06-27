@@ -1,36 +1,21 @@
-const { Joke, sequelize } = require('../db/models');
+const JokeService = require('../services/Joke.service');
+const { formatResponse } = require('../utils/formatResponse');
 
-exports.getAllJokes = async (req, res) => {
-    const jokes = await Joke.findAll();
-    res.json(jokes);
-};
-
-exports.getRandomJoke = async (req, res) => {
-    try {
-        const [joke] = await Joke.findAll({
-            order: sequelize.random(),
-            limit: 1,
-        });
-
-        if (!joke) return res.status(404).json({ message: 'No jokes found' });
-
-        res.json(joke);
-    } catch (error) {
-        res.status(500).json({ message: 'Server error' });
+class JokesController {
+    static async getAll(req, res) {
+        try {
+            const getAllQuestion = await JokeService.getAll()
+            res.status(200).json(formatResponse({
+                statusCode: 200, message: 'Получены все данные из темы',
+                data: getAllQuestion
+            }))
+        } catch (error) {
+            console.log(error);
+            res.status(500).json(formatResponse({
+                statusCode: 401, message: 'Нет прав на получение всей темы',
+                error: error.message
+            }))
+        }
     }
-};
-
-exports.checkGuess = async (req, res) => {
-    const { cardId, userAnswer } = req.body;
-
-    const joke = await Joke.findByPk(cardId);
-    if (!joke) return res.status(404).json({ message: 'Joke not found' });
-
-    const correct =
-        joke.rightAnswer.trim().toLowerCase() === userAnswer.trim().toLowerCase();
-
-    res.json({
-        correct,
-        correctAnswer: joke.rightAnswer,
-    });
-};
+}
+module.exports = JokesController;
