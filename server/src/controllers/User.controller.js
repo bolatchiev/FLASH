@@ -1,5 +1,5 @@
 
-const UserService = require('../services/UserService');
+const UserService = require('../services/User.service');
 const formatResponse = require('../utils/formatResponse');
 
 
