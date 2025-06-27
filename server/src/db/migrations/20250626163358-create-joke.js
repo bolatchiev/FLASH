@@ -18,12 +18,8 @@ module.exports = {
         allowNull: false,
       },
       rightAns: {
-<<<<<<< HEAD
         type: Sequelize.STRING,
         allowNull: false,
-=======
-        type: Sequelize.STRING
->>>>>>> fcdff7232b219c0795f281c8cb994806be6cba6d
       },
       createdAt: {
         allowNull: false,

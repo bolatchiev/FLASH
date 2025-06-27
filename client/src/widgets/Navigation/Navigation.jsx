@@ -1,35 +1,24 @@
-import './Navigation.css';
 import { NavLink } from 'react-router';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import './Navigation.css'
 
-export default function Navigation() {
-  return (
-    <header className='header'>
-      <NavLink
-        to='/'
-        className={({ isActive }) =>
-          `header_link ${isActive ? 'header_link--active' : ''}`
-        }
-      >
-        Главная
-      </NavLink>
+const Navigation = () => {
+    return (
+        <>
+        <Navbar bg="dark" variant="dark">
+            <Container>
+                <Nav className="me-auto">
+                    <NavLink to="/" className="nav-link">Выбор темы игры</NavLink>
+                </Nav>
+                <Nav className="ml-auto">
+                    <NavLink to="/authPage" className="nav-link">Регистрация / Вход</NavLink>
+                </Nav>
+            </Container>
+        </Navbar>
+        </>
+    );
+};
 
-      <NavLink
-        to='../pages/Authpage/AuthPage'
-        className={({ isActive }) =>
-          `header_link ${isActive ? 'header_link--active' : ''}`
-        }
-      >
-        Регистрация/Вход
-      </NavLink>
-
-      <NavLink
-        to='/tasks'
-        className={({ isActive }) =>
-          `header_link ${isActive ? 'header_link--active' : ''}`
-        }
-      >
-        Задачи
-      </NavLink>
-    </header>
-  );
-}
+export default Navigation;
