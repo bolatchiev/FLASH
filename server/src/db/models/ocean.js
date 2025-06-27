@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   Ocean.init({
     question: DataTypes.STRING,
     answer: DataTypes.STRING,
-    rightAnswer: DataTypes.STRING
+    rightAns: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Ocean',
