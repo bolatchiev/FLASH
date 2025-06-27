@@ -1,0 +1,18 @@
+.nav-link {
+    color: white; 
+    text-decoration: none; 
+    margin-left: 15px; 
+}
+.nav-link:hover {
+    text-decoration: underline; 
+}
+.navbar {
+    display: flex;
+    justify-content: space-between; 
+}
+.me-auto {
+    margin-right: auto; 
+}
+.ml-auto {
+    margin-left: auto; 
+}

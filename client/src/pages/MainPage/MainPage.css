@@ -1,0 +1,31 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  gap: 20px; /* Отступ между карточками */
+}
+.theme-card {
+  width: 300px; /* Ширина карточки */
+  border: 1px solid #e0e0e0; /* Светло-серая рамка */
+  border-radius: 8px; /* Закругленные углы */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Легкая тень */
+  transition: transform 0.2s; /* Плавный эффект при наведении */
+}
+.theme-card:hover {
+  transform: scale(1.05); /* Увеличение карточки при наведении */
+}
+.play-btn {
+  display: inline-block;
+  margin-top: 10px; /* Отступ сверху для кнопки */
+  padding: 10px 20px; /* Отступы внутри кнопки */
+  background-color: #2563eb; /* Цвет фона кнопки */
+  color: white; /* Цвет текста кнопки */
+  text-decoration: none; /* Убираем подчеркивание */
+  border-radius: 5px; /* Закругленные углы кнопки */
+  transition: background-color 0.3s; /* Плавный переход цвета фона */
+}
+.play-btn:hover {
+  background-color: #1e40af; /* Темнее при наведении */
+}
