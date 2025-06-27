@@ -11,7 +11,7 @@ class GeographyController {
             }))
         } catch (error) {
             console.log(error);
-            res.staus(500).json(formatResponse({
+            res.status(500).json(formatResponse({
                 statusCode: 401, message: 'Нет прав на получение всей темы',
                 error: error.message
             }))
