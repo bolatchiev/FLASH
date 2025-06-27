@@ -6,14 +6,14 @@ module.exports = {
       {
         name: 'Alice',
         email: 'alice@example.com',
-        password: 'hashedpassword1', // предположим, пароль уже хеширован
+        password: 'hashed password1', // предположим, пароль уже хеширован
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
         name: 'Bob',
         email: 'bob@example.com',
-        password: 'hashedpassword2',
+        password: 'hashed password2',
         createdAt: new Date(),
         updatedAt: new Date(),
       },

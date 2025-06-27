@@ -13,13 +13,27 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Joke.init({
-    question: DataTypes.STRING,
-    answer: DataTypes.STRING,
-    rightAnswer: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'Joke',
-  });
+  Joke.init(
+      {
+        question: {
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
+        answer: {
+          type: DataTypes.TEXT,
+          allowNull: true,
+        },
+        rightAns: {
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
+      },
+      {
+        sequelize,
+        modelName: 'Joke',
+        tableName: 'Jokes',
+      }
+  );
   return Joke;
 };
+
