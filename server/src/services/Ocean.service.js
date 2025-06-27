@@ -16,3 +16,5 @@ class OceanService{
         return result
     }
 }
+
+module.exports = OceanService
