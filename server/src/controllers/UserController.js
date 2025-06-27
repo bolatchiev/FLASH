@@ -51,7 +51,7 @@ class UserController {
 
     try {
       // Получаем пользователя по email
-      const user = await AuthService.getUserByEmail({ email });
+      const user = await UserService.getUserByEmail({ email });
 
       if (!user) {
         return res.status(400).json(formatResponse(400, 'User not found'));
@@ -62,14 +62,18 @@ class UserController {
       const plainUser = user.get();
       delete plainUser.password;
 
+    }
+    catch(error){
+      console.log(error)
+    }
   }
-
+    
   // Выход из системы
   static async logout(req, res) {
    
-    res.json(formatResponse(200, 'Success'));
+    await res.json(formatResponse(200, 'Success'));
   }
   }
-}
+
 
 module.exports = AuthController;
