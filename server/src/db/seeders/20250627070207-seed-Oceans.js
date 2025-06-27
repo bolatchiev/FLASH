@@ -3,23 +3,121 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-    */
+   await queryInterface.bulkInsert('Oceans', [
+      {
+        question: 'Самый большой океан на Земле:',
+        answer: JSON.stringify(
+        [
+            'Атлантический океан',
+            'Тихий океан',
+            'Индийский океан',
+          ],
+        ),
+        rightAns: 'Тихий океан',
+      },
+      {
+        question: 'Какой океан является самым маленьким по площади?',
+        answer: JSON.stringify(
+          [
+            'Северный Ледовитый океан',
+            'Южный океан',
+            'Индийский океан',
+          ],
+        ),
+        rightAns: 'Северный Ледовитый океан',
+      },
+      {
+        question: 'В каком океане находится Марианская впадина?',
+        answer: JSON.stringify(
+          [
+            'Атлантический океан',
+            'Тихий океан',
+            'Индийский океан',
+          ],
+        ),
+        rightAns: 'Тихий океан',
+      },
+      {
+        question: 'Какой океан омывает наибольшее количество континентов?',
+        answer: JSON.stringify(
+          [
+            'Атлантический океан',
+            'Индийский океан',
+            'Тихий океан',
+          ],
+        ),
+        rightAns: 'Индийский океан',
+      },
+      {
+        question: 'Какой океан был выделен как отдельный в 2000 году?',
+        answer: JSON.stringify(
+          [
+            'Южный океан',
+            'Северный Ледовитый океан',
+            'Атлантический океан',
+          ],
+        ),
+        rightAns: 'Южный океан',
+      },
+      {
+        question: 'В каком океане находится Большой Барьерный риф?',
+        answer: JSON.stringify(
+          [
+            'Тихий океан',
+            'Индийский океан',
+            'Атлантический океан',
+          ],
+        ),
+        rightAns: 'Тихий океан',
+      },
+      {
+        question: 'Какой океан имеет наименьшую среднюю глубину?',
+        answer: JSON.stringify(
+          [
+            'Северный Ледовитый океан',
+            'Индийский океан',
+            'Атлантический океан',
+          ],
+        ),
+        rightAns: 'Северный Ледовитый океан',
+      },
+      {
+        question: 'Какой океан соединяется с Тихим через Панамский канал?',
+        answer: JSON.stringify(
+          [
+            'Атлантический океан',
+            'Индийский океан',
+            'Северный Ледовитый океан',
+          ],
+        ),
+        rightAns: 'Атлантический океан',
+      },
+      {
+        question: 'Какой океан омывает Антарктиду со всех сторон?',
+        answer: JSON.stringify(
+          [
+            'Южный океан',
+            'Тихий океан',
+            'Атлантический океан',
+          ],
+        ),
+        rightAns: 'Южный океан',
+      },
+      {
+        question: 'В каком океане находится Саргассово море?',
+        answer: JSON.stringify(
+          [
+            'Атлантический океан',
+            'Тихий океан',
+            'Индийский океан',
+          ],
+        ),
+        rightAns: 'Атлантический океан',
+      },
+    ], {});
   },
 
   async down (queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
+    await queryInterface.bulkDelete('Oceans', null, {});
   }
 };
