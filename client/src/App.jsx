@@ -9,7 +9,7 @@ function App() {
     <Routes>
       <Route path='/' element={<Layout/>}> 
         <Route index element={<MainPage />} />
-        <Route path='/game' element={<GamePage/>}/>
+        <Route path='/game/:topic' element={<GamePage/>}/>
       </Route>
     </Routes>
   )

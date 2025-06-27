@@ -1,13 +1,23 @@
-const { Geography } = require('../db/models')
+const { Geography, Joke, Ocean } = require('../db/models')
 
 class GeographyService {
-    static async getAll(){
-        return await Geography.findAll()
+    static async getAll(topic) {
+        let data;
+        switch (topic) {
+            case 'geography':
+                data = await Geography.findAll(); 
+                break;
+            case 'joke':
+                data = await Joke.findAll(); 
+                break;
+            case 'ocean':
+                data = await Ocean.findAll(); 
+                break;
+            default:
+                throw new Error('Неверная тема');
+        }
+        return data;
     }
-
-    // static async getById(id){
-    //     return await Geography.findByPk(id)
-    // }
 }
 
 module.exports = GeographyService
