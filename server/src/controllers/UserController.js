@@ -71,6 +71,11 @@ class UserController {
       const plainUser = user.get();
       delete plainUser.password;
 
+      res.status(200).json(formatResponse({
+        statusCode: 200, 
+        data: user
+      }))
+
   }catch(error){
       console.log(error);
       return res.status(500).json(formatResponse({
