@@ -4,33 +4,27 @@ import { useEffect } from "react";
 import { GeographyApi } from "../../entities/GeographyApi";
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import Stack from 'react-bootstrap/Stack';
+import { useParams } from "react-router";
 
 
 export default function GamePage() {
-    const [cards, setCards] = useState([]); 
-    const [error, setError] = useState("");
+    const { topic } = useParams();
+    const [questions, setQuestions] = useState([]);
+    const [currentIndex, setCurrentIndex] = useState(0);
     const [status, setStatus] = useState(45);
-    const [currentCardIndex, setCurrentCardIndex] = useState(0); 
+    const [error, setError] = useState(null);
     
-    async function getCard() {
-        try {
-        const { statusCode, data, error } = await GeographyApi.getAll();
-        if (error) {
-            setError(error);
-            return;
-        }
-        if (statusCode === 200) {
-            setCards(data);
-            console.log(data);
-        }
-        } catch (error) {
-        console.log(error);
-        setError(error.message);
-        }
-    }
     useEffect(() => {
-        getCard();
-    }, []);
+        async function loadQuestions() {
+        try {
+            const data = await GeographyApi.getAll(topic);
+            setQuestions(data.data);
+        } catch (err) {
+            setError(err.message);
+        }
+        }
+        loadQuestions();
+    }, [topic]);
 
     useEffect(() => {
     if (status === 0) {
@@ -45,37 +39,43 @@ export default function GamePage() {
     return () => clearInterval(timer)
     }, [status])
 
-    const currentCard = cards[currentCardIndex]; 
-    const answers = currentCard?.answer ? JSON.parse(currentCard.answer) : [];
 
-    function handleClick(event, answer){
-        if(answer === currentCard.rightAns){
-            event.target.classList.add('correct')
-            setCurrentCardIndex((prevIndex) => prevIndex + 1);
-            setStatus(45)
+    
+    const handleAnswerClick = (answer) => {
+        const currentQuestion = questions[currentIndex];
+        if (answer === currentQuestion.rightAns) {
+            if (currentIndex < questions.length - 1) {
+                setCurrentIndex(currentIndex + 1);
+                setStatus(45);
+            }else{
+                alert('Игра окончена!')
+            }
         }else{
-            console.log("Неправильно");
+            alert('Неправильный ответ')
         }
-    }
-
+    };
+    
+    if (error) return <div className="error-message">{error}</div>;
+    if (questions.length === 0) return <div>Загрузка...</div>;
+    
+    const currentQuestion = questions[currentIndex];
+    const answers = currentQuestion?.answer ? JSON.parse(currentQuestion.answer) : [];
+    
     return (
-        <>
-            {error && <div className="error">{error}</div>} 
-            <div className="progressbar-container">
-                <ProgressBar animated now={status} max={45} />
-            </div>
-            <Stack gap={3}>
-                {currentCard && (
-                    <>
-                        <div className="p-2">{currentCard.question}</div>
-                        {answers.map((el, index) => (
-                            <div key={index} onClick={(event) => handleClick(event, el)} className="p-2">
-                                {el}
-                            </div>
-                        ))}
-                    </>
-                )}
-            </Stack>
-        </>
+        <div className="game-container">
+        <ProgressBar animated now={status} max={45} />
+        <Stack gap={3}>
+            <h2>{currentQuestion?.question}</h2>
+            {answers.map((answer, index) => (
+            <button 
+                key={index}
+                className="answer-btn"
+                onClick={() => handleAnswerClick(answer)}
+            >
+                {answer}
+            </button>
+            ))}
+        </Stack>
+        </div>
     );
 }
