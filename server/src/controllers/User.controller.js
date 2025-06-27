@@ -1,5 +1,5 @@
 
-const UserService = require('../services/UserService');
+const UserService = require('../services/User.service');
 const formatResponse = require('../utils/formatResponse');
 
 
@@ -70,6 +70,11 @@ class UserController {
       // Приводим пользователя к обычному объекту и удаляем пароль
       const plainUser = user.get();
       delete plainUser.password;
+
+      res.status(200).json(formatResponse({
+        statusCode: 200, 
+        data: user
+      }))
 
   }catch(error){
       console.log(error);
