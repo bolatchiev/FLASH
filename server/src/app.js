@@ -6,7 +6,7 @@ const app = express();
 serverConfig(app);
 app.use('/api', (req, res, next) => {
   // Здесь можно добавить логику для всех запросов к /api
-  next();
+  next();  //! не забыть поменять!
 });
 
 
