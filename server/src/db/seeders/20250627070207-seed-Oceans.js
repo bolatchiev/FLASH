@@ -3,120 +3,121 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-   await queryInterface.bulkInsert(
-      'Elbrus',
-      [
-        {
-          question: 'Что делает useState в React?',
-          answer: JSON.stringify({
-            A: 'Собирает стили',
-            B: 'Хранит и обновляет состояние',
-            C: 'Рендерит HTML',
-            D: 'Обновляет сервер',
-          }),
-          rigthAns: 'B',
-        },
-        {
-          question: 'Что такое JSX?',
-          answer: JSON.stringify({
-            A: 'HTML внутри JavaScript',
-            B: 'CSS синтаксис',
-            C: 'Тип данных',
-            D: 'Альтернатива JSON',
-          }),
-          rigthAns: 'A',
-        },
-        {
-          question: 'Какой хук нужен для эффекта при монтировании компонента?',
-          answer: JSON.stringify({
-            A: 'useMount',
-            B: 'useLoad',
-            C: 'useEffect',
-            D: 'useTrigger',
-          }),
-          rigthAns: 'C',
-        },
-        {
-          question: 'Что делает Express?',
-          answer: JSON.stringify({
-            A: 'Работает с HTML',
-            B: 'Создаёт сервер на Node.js',
-            C: 'Управляет стилями',
-            D: 'Генерирует таблицы',
-          }),
-          rigthAns: 'B',
-        },
-        {
-          question: 'Что делает `res.send()` в Express?',
-          answer: JSON.stringify({
-            A: 'Получает данные',
-            B: 'Останавливает сервер',
-            C: 'Отправляет ответ клиенту',
-            D: 'Удаляет базу',
-          }),
-          rigthAns: 'C',
-        },
-        {
-          question: 'Что такое Virtual DOM?',
-          answer: JSON.stringify({
-            A: 'Настоящий DOM',
-            B: 'Массив HTML',
-            C: 'Виртуальная копия DOM',
-            D: 'Файл JSON',
-          }),
-          rigthAns: 'C',
-        },
-        {
-          question: 'Какой метод Express обрабатывает GET-запрос?',
-          answer: JSON.stringify({
-            A: 'app.read()',
-            B: 'app.get()',
-            C: 'app.query()',
-            D: 'app.post()',
-          }),
-          rigthAns: 'B',
-        },
-        {
-          question: 'Что такое middleware в Express?',
-          answer: JSON.stringify({
-            A: 'CSS-фреймворк',
-            B: 'База данных',
-            C: 'Функция обработки запроса',
-            D: 'Оболочка для HTML',
-          }),
-          rigthAns: 'C',
-        },
-        {
-          question: 'React — это...',
-          answer: JSON.stringify({
-            A: 'Фреймворк',
-            B: 'Библиотека',
-            C: 'CMS',
-            D: 'API',
-          }),
-          rigthAns: 'B',
-        },
-        {
-          question: 'Что делает `express.json()`?',
-          answer: JSON.stringify({
-            A: 'Стирает данные',
-            B: 'Преобразует HTML',
-            C: 'Парсит JSON из тела запроса',
-            D: 'Сохраняет JSON-файл',
-          }),
-          rigthAns: 'C',
-        },
-      ],
-      {}
-    );
+   await queryInterface.bulkInsert('Oceans', [
+      {
+        question: 'Самый большой океан на Земле:',
+        answer: JSON.stringify(
+        [
+            'Атлантический океан',
+            'Тихий океан',
+            'Индийский океан',
+          ],
+        ),
+        rightAns: 'Тихий океан',
+      },
+      {
+        question: 'Какой океан является самым маленьким по площади?',
+        answer: JSON.stringify(
+          [
+            'Северный Ледовитый океан',
+            'Южный океан',
+            'Индийский океан',
+          ],
+        ),
+        rightAns: 'Северный Ледовитый океан',
+      },
+      {
+        question: 'В каком океане находится Марианская впадина?',
+        answer: JSON.stringify(
+          [
+            'Атлантический океан',
+            'Тихий океан',
+            'Индийский океан',
+          ],
+        ),
+        rightAns: 'Тихий океан',
+      },
+      {
+        question: 'Какой океан омывает наибольшее количество континентов?',
+        answer: JSON.stringify(
+          [
+            'Атлантический океан',
+            'Индийский океан',
+            'Тихий океан',
+          ],
+        ),
+        rightAns: 'Индийский океан',
+      },
+      {
+        question: 'Какой океан был выделен как отдельный в 2000 году?',
+        answer: JSON.stringify(
+          [
+            'Южный океан',
+            'Северный Ледовитый океан',
+            'Атлантический океан',
+          ],
+        ),
+        rightAns: 'Южный океан',
+      },
+      {
+        question: 'В каком океане находится Большой Барьерный риф?',
+        answer: JSON.stringify(
+          [
+            'Тихий океан',
+            'Индийский океан',
+            'Атлантический океан',
+          ],
+        ),
+        rightAns: 'Тихий океан',
+      },
+      {
+        question: 'Какой океан имеет наименьшую среднюю глубину?',
+        answer: JSON.stringify(
+          [
+            'Северный Ледовитый океан',
+            'Индийский океан',
+            'Атлантический океан',
+          ],
+        ),
+        rightAns: 'Северный Ледовитый океан',
+      },
+      {
+        question: 'Какой океан соединяется с Тихим через Панамский канал?',
+        answer: JSON.stringify(
+          [
+            'Атлантический океан',
+            'Индийский океан',
+            'Северный Ледовитый океан',
+          ],
+        ),
+        rightAns: 'Атлантический океан',
+      },
+      {
+        question: 'Какой океан омывает Антарктиду со всех сторон?',
+        answer: JSON.stringify(
+          [
+            'Южный океан',
+            'Тихий океан',
+            'Атлантический океан',
+          ],
+        ),
+        rightAns: 'Южный океан',
+      },
+      {
+        question: 'В каком океане находится Саргассово море?',
+        answer: JSON.stringify(
+          [
+            'Атлантический океан',
+            'Тихий океан',
+            'Индийский океан',
+          ],
+        ),
+        rightAns: 'Атлантический океан',
+      },
+    ], {});
   },
 
   async down (queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
+    await queryInterface.bulkDelete('Oceans', null, {});
   }
 };
