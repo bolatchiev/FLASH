@@ -11,7 +11,7 @@ class UserService {
     return { user, created };
   } 
   static async getUserByEmail({ email }) {
-    const user = await User.findOne({ where: { email } }); 
+    return await User.findOne({ where: { email } }); 
   }
 }
 

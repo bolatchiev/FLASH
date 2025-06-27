@@ -10,11 +10,10 @@ class UserController {
 
     // Проверка на обязательные поля
     if (!email || !name || !password) {
-      return res.status(400).json(formatResponse(400, 'Missing required fields'));
+      return res.status(400).json(formatResponse({
+        statusCode: 400, message: 'Missing required fields'
+      }));
     }
-
-  
-
     try {
       // Регистрируем пользователя через сервис
       const { user, created } = await UserService.register({
@@ -25,7 +24,9 @@ class UserController {
 
       // Если пользователь уже существует
       if (!created) {
-        return res.status(400).json(formatResponse(400, 'User already exists'));
+        return res.status(400).json(formatResponse({
+          statusCode: 400, 
+          message: 'User already exists'}));
       }
 
       // Получаем обычный объект пользователя без Sequelize метаданных
@@ -33,10 +34,14 @@ class UserController {
       delete plainUser.password; // Удаляем пароль из ответа
 
       // Сохраняем refreshToken в куку и отправляем успешный ответ
-      return res.json(formatResponse(201, 'Success',));
+      return res.json(formatResponse({
+        statusCode: 201, message: 'Success'
+      }));
     } catch (error) {
       console.log(error);
-      return res.status(500).json(formatResponse(500, 'Internal Server Error'));
+      return res.status(500).json(formatResponse({
+        statusCode: 500, error: 'Internal Server Error'
+    }));
     }
   }
 
@@ -46,15 +51,19 @@ class UserController {
 
     // Проверка на обязательные поля
     if (!email || !password) {
-      return res.status(400).json(formatResponse(400, 'Missing required fields'));
+      return res.status(400).json(formatResponse({
+        statusCode: 400, message: 'Missing required fields'
+    }));
     }
 
     try {
       // Получаем пользователя по email
-      const user = await AuthService.getUserByEmail({ email });
+      const user = await UserService.getUserByEmail({ email });
 
       if (!user) {
-        return res.status(400).json(formatResponse(400, 'User not found'));
+        return res.status(400).json(formatResponse({
+          statusCode: 400, message: 'User not found'
+        }));
       }
 
 
@@ -62,14 +71,15 @@ class UserController {
       const plainUser = user.get();
       delete plainUser.password;
 
-  }
-
-  // Выход из системы
-  static async logout(req, res) {
-   
-    res.json(formatResponse(200, 'Success'));
-  }
+  }catch(error){
+      console.log(error);
+      return res.status(500).json(formatResponse({
+        statusCode: 500, error: 'Internal Server Error'
+    }));
   }
 }
 
-module.exports = AuthController;
+}
+
+
+module.exports = UserController;
