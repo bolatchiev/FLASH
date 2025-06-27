@@ -1,0 +1,75 @@
+
+const UserService = require('../services/UserService');
+const formatResponse = require('../utils/formatResponse');
+
+
+class UserController {
+  // Регистрация пользователя
+  static async signup(req, res) {
+    const { email, name, password } = req.body;
+
+    // Проверка на обязательные поля
+    if (!email || !name || !password) {
+      return res.status(400).json(formatResponse(400, 'Missing required fields'));
+    }
+
+  
+
+    try {
+      // Регистрируем пользователя через сервис
+      const { user, created } = await UserService.register({
+        email,
+        name,
+        password,
+      });
+
+      // Если пользователь уже существует
+      if (!created) {
+        return res.status(400).json(formatResponse(400, 'User already exists'));
+      }
+
+      // Получаем обычный объект пользователя без Sequelize метаданных
+      const plainUser = user.get();
+      delete plainUser.password; // Удаляем пароль из ответа
+
+      // Сохраняем refreshToken в куку и отправляем успешный ответ
+      return res.json(formatResponse(201, 'Success',));
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json(formatResponse(500, 'Internal Server Error'));
+    }
+  }
+
+  // Авторизация пользователя
+  static async login(req, res) {
+    const { email, password } = req.body;
+
+    // Проверка на обязательные поля
+    if (!email || !password) {
+      return res.status(400).json(formatResponse(400, 'Missing required fields'));
+    }
+
+    try {
+      // Получаем пользователя по email
+      const user = await AuthService.getUserByEmail({ email });
+
+      if (!user) {
+        return res.status(400).json(formatResponse(400, 'User not found'));
+      }
+
+
+      // Приводим пользователя к обычному объекту и удаляем пароль
+      const plainUser = user.get();
+      delete plainUser.password;
+
+  }
+
+  // Выход из системы
+  static async logout(req, res) {
+   
+    res.json(formatResponse(200, 'Success'));
+  }
+  }
+}
+
+module.exports = AuthController;
