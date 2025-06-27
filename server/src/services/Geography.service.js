@@ -5,9 +5,9 @@ class GeographyService {
         return await Geography.findAll()
     }
 
-    static async getById(id){
-        return await Geography.findByPk(id)
-    }
+    // static async getById(id){
+    //     return await Geography.findByPk(id)
+    // }
 }
 
 module.exports = GeographyService

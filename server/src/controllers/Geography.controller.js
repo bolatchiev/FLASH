@@ -18,9 +18,13 @@ class GeographyController {
         }
     }
 
-    static async getById(req, res){
-        const { id } = req.params
-        const getOne = await GeographyService.getById(id)
-        res.status(200). 
-    }
+    // static async getById(req, res){
+    //     const { id } = req.params
+    //     const getOne = await GeographyService.getById(id)
+    //     res.status(200).json(formatResponse({
+    //         statusCode: 200, message: 'Получена все данные'
+    //     }))
+    // }
 }
+
+module.exports = GeographyController
