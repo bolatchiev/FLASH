@@ -15,7 +15,7 @@ module.exports = {
       answer: {
         type: Sequelize.STRING
       },
-      rightAnswer: {
+      rightAns: {
         type: Sequelize.STRING
       },
       createdAt: {
