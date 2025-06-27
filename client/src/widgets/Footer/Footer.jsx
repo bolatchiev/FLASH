@@ -1,9 +1,12 @@
 import React from 'react'
+import './Foter.css'
 
 export default function footer() {
   return (
-    <div>
-      
-    </div>
+    <footer className="footer">
+      <div className="footer-content">
+        Это футер
+      </div>
+    </footer>
   )
 }
